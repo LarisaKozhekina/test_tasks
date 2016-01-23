@@ -5,7 +5,6 @@ import static org.junit.Assert.assertEquals;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -17,15 +16,12 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 @RunWith(Parameterized.class)
 public class CalculatorTest {
-	private BigDecimal inputNumber1;
-	private BigDecimal inputNumber2;
+	private int inputNumber1;
+	private int inputNumber2;
 	private String operation;
-	private BigDecimal expectedResult;
-	private int scale = 10;
+	private String expectedResult;
 
-	
-	public CalculatorTest(BigDecimal inputNumber1, BigDecimal inputNumber2, String operation,
-			BigDecimal expectedResult) {
+	public CalculatorTest(int inputNumber1, int inputNumber2, String operation, String expectedResult) {
 		this.inputNumber1 = inputNumber1;
 		this.inputNumber2 = inputNumber2;
 		this.operation = operation;
@@ -33,8 +29,8 @@ public class CalculatorTest {
 	}
 
 	@Parameterized.Parameters
-	public static Collection calcParams() {
-		ArrayList aList = new ArrayList();
+	public static Collection<Object[]> calcParams() {
+		ArrayList<Object[]> aList = new ArrayList<Object[]>();
 
 		String fileName = "inputData.txt";
 		try (BufferedReader input = new BufferedReader(new FileReader(fileName))) {
@@ -45,8 +41,8 @@ public class CalculatorTest {
 					try {
 						String[] params = calcString.trim().split(";");
 
-						Object[] obj = { new BigDecimal(params[0]), new BigDecimal(params[1]), params[2],
-								new BigDecimal(params[3]) };
+						Object[] obj = { Integer.parseInt(params[0]), Integer.parseInt(params[1]), params[2],
+								params[3] };
 
 						aList.add(obj);
 					} catch (Exception e) {
@@ -66,35 +62,37 @@ public class CalculatorTest {
 
 		return aList;
 	}
+
 	@Test
 	public void testCalculator() {
 		print_params(inputNumber1, inputNumber2, operation, expectedResult);
-		try {
 		switch (operation) {
 		case "+":
-			assertEquals(expectedResult, Calculator.add(inputNumber1, inputNumber2));
+			assertEquals(Float.parseFloat(expectedResult), Calculator.add(inputNumber1, inputNumber2), 0.000001);
 			break;
 		case "-":
-			assertEquals(expectedResult, Calculator.sub(inputNumber1, inputNumber2));
+			assertEquals(Float.parseFloat(expectedResult), Calculator.sub(inputNumber1, inputNumber2), 0.000001);
 			break;
 		case "*":
-			assertEquals(expectedResult, Calculator.mul(inputNumber1, inputNumber2));
+			assertEquals(Float.parseFloat(expectedResult), Calculator.mul(inputNumber1, inputNumber2), 0.000001);
 			break;
 		case "/":
-			assertEquals(expectedResult, Calculator.div(inputNumber1, inputNumber2, scale));
+			try {
+				Calculator.div(inputNumber1, inputNumber2);
+				assertEquals(Float.parseFloat(expectedResult), Calculator.div(inputNumber1, inputNumber2), 0.000001);
+			} catch (ArithmeticException e) {
+				assertEquals(expectedResult, "Error");
+			}
 			break;
 		default:
 			System.err.println("Недопустимая операция. ");
 		}
-		} catch (Exception e) {
-			System.err.println("Calculation Exception");
-		}
-		
+
 	}
+
 	@Step("Calculate:  operand1 = {0}, operand2 = {1}, operation = {2}, expected result = {3}")
-	private void print_params(BigDecimal inputNumber12, BigDecimal inputNumber22, String operation2,
-			BigDecimal expectedResult2) {
+	private void print_params(int inputNumber11, int inputNumber22, String operation2, String expectedResult2) {
 		// для вывода параметров теста
-		
+
 	}
 }

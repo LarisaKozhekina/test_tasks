@@ -1,19 +1,19 @@
 package ru.larisak.mySber;
 
-import java.math.BigDecimal;
-
 public final class Calculator {
-	public static BigDecimal add(BigDecimal a, BigDecimal b){
-		return a.add(b); 
+	public static float add(int a, int b){
+		return a+b; 
 	}
-	public static BigDecimal sub(BigDecimal a, BigDecimal b){
-		return a.subtract(b);
+	public static float sub(int a, int b){
+		return a-b;
 	}
-	public static BigDecimal mul(BigDecimal a, BigDecimal b){
-		return a.multiply(b);
+	public static float mul(int a, int b){
+		return a*b;
 	}
-	public static BigDecimal div(BigDecimal a, BigDecimal b, int accuracy) throws ArithmeticException{
-		//будет exception, если b = 0
-		return a.divide(b, accuracy, BigDecimal.ROUND_HALF_UP);
+	public static float div(int a, int b) throws ArithmeticException{
+		if( b == 0 ) {
+			throw new ArithmeticException();
+		}		
+		return (float)a/b;
 	}
 }

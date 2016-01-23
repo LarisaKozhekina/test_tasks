@@ -19,10 +19,10 @@ public class CalcApp {
 				while ((calcString = input.readLine()) != null) {
 					System.out.print(calcString + " = ");
 					try {
-						BigDecimal result = LineCalculator.doCalculate(calcString);
+						float result = LineCalculator.doCalculate(calcString);
 						System.out.println(result);
 					} catch (Exception e) {
-						System.out.println("Некорректные данные");
+						System.out.println("Error");
 					}
 				}
 				System.out.println("------------------------------------- ");

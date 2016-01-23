@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ru.larisak.mySber.CalculatorTest" time="0.072" tests="4" errors="0" skipped="0" failures="0">
+<testsuite name="ru.larisak.mySber.CalculatorTest" time="0.074" tests="3" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="c:\Java\jdk1.8.0_65\jre\bin"/>
@@ -62,8 +62,7 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="testCalculator[0]" classname="ru.larisak.mySber.CalculatorTest" time="0.069"/>
+  <testcase name="testCalculator[0]" classname="ru.larisak.mySber.CalculatorTest" time="0.074"/>
   <testcase name="testCalculator[1]" classname="ru.larisak.mySber.CalculatorTest" time="0"/>
   <testcase name="testCalculator[2]" classname="ru.larisak.mySber.CalculatorTest" time="0"/>
-  <testcase name="testCalculator[3]" classname="ru.larisak.mySber.CalculatorTest" time="0.003"/>
 </testsuite>
