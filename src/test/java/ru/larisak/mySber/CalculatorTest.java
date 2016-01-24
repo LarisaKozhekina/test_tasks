@@ -8,7 +8,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
@@ -27,7 +29,9 @@ public class CalculatorTest {
 		this.operation = operation;
 		this.expectedResult = expectedResult;
 	}
-
+//@Rule
+//	public ExpectedException exception = ExpectedException.none();
+	
 	@Parameterized.Parameters
 	public static Collection<Object[]> calcParams() {
 		ArrayList<Object[]> aList = new ArrayList<Object[]>();
